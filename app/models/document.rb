@@ -4,5 +4,5 @@ class Document < ApplicationRecord
 
   validates :file, presence: true
   validates :when, presence: true
-  validates :description, presence: true
+  validates :title, presence: true
 end
