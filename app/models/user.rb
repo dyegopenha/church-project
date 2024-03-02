@@ -11,4 +11,12 @@ class User < ApplicationRecord
   validates :address_number, presence: true
   validates :birthday, presence: true
   validates :office, inclusion: { in: %w(nenhum diacono presbitero pastor) }
+
+  scope :active, -> { where(active: true) }
+  scope :member, -> { where(member: true) }
+  scope :pastor, -> { where(office: "pastor") }
+  scope :presbitero, -> { where(office: "presbitero") }
+  scope :diacono, -> { where(office: "diacono") }
+  scope :nenhum, -> { where(office: "nenhum") }
+  scope :birthday_month, -> { where(birthday: Date.today.beginning_of_month..Date.today.end_of_month) }
 end
