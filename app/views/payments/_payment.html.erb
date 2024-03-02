@@ -1,0 +1,32 @@
+<div id="<%= dom_id payment %>">
+  <p>
+    <strong>Amount:</strong>
+    <%= payment.amount %>
+  </p>
+
+  <p>
+    <strong>Kind:</strong>
+    <%= payment.kind %>
+  </p>
+
+  <p>
+    <strong>Favored:</strong>
+    <%= payment.favored %>
+  </p>
+
+  <p>
+    <strong>When:</strong>
+    <%= payment.when %>
+  </p>
+
+  <p>
+    <strong>File:</strong>
+    <%= link_to payment.file.filename, payment.file if payment.file.attached? %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= payment.description %>
+  </p>
+
+</div>
