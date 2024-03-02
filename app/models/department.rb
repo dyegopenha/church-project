@@ -5,6 +5,6 @@ class Department < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  scope :name_contains, ->(param) { where('name ILIKE ?', "%#{param}%") }
+  scope :name_contains, ->(param) { where('name LIKE ?', "%#{param}%") }
   scope :sorted, -> { order(name: :asc) }
 end

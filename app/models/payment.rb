@@ -7,5 +7,5 @@ class Payment < ApplicationRecord
   validates :favored, presence: true
 
   scope :from_month, ->(date) { where(when: date.beginning_of_month..date.end_of_month) }
-  scope :favored_contains, ->(param) { where('favored ILIKE ?', "%#{param}%") }
+  scope :favored_contains, ->(param) { where('favored LIKE ?', "%#{param}%") }
 end

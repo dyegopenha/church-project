@@ -3,7 +3,12 @@ class DepartmentsController < ApplicationController
 
   # GET /departments or /departments.json
   def index
-    @departments = Department.all
+    if params[:key].present?
+      key = "%#{params[:key]}%"
+      @departments = Department.name_contains(key)
+    else
+      @departments = Department.all.sorted
+    end
   end
 
   # GET /departments/1 or /departments/1.json

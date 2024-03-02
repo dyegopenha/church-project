@@ -7,5 +7,5 @@ class Income < ApplicationRecord
   validates :origin, presence: true
 
   scope :from_month, ->(date) { where(when: date.beginning_of_month..date.end_of_month) }
-  scope :origin_contains, ->(param) { where('origin ILIKE ?', "%#{param}%") }
+  scope :origin_contains, ->(param) { where('origin LIKE ?', "%#{param}%") }
 end

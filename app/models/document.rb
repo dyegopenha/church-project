@@ -7,5 +7,5 @@ class Document < ApplicationRecord
   validates :title, presence: true
 
   scope :from_month, ->(date) { where(when: date.beginning_of_month..date.end_of_month) }
-  scope :title_contains, ->(param) { where('title ILIKE ?', "%#{param}%") }
+  scope :title_contains, ->(param) { where('title LIKE ?', "%#{param}%") }
 end

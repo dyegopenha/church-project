@@ -1,14 +1,39 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Departments</h1>
-
-<div id="departments">
-  <% @departments.each do |department| %>
-    <%= render department %>
-    <p>
-      <%= link_to "Show this department", department %>
-    </p>
-  <% end %>
+<div class="card">
+  <div class="card-header">
+    <h1>Departments</h1>
+  </div>
+  <div class="card-body">
+    <form class="d-flex" action="/department_search">
+      <input class="form-control me-2" name="key" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-dark" type="submit">Search</button>
+    </form>
+    <div id="departments">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @departments.each do |department| %>
+            <tr>
+              <td><%= image_tag department.avatar, width: '50' %></td>
+              <td><%= department.name %></td>
+              <td><%= department.description %></td>
+              <td><%= link_to "Show", department, class: 'btn btn-outline-success' %></td>
+              <td><%= link_to "Edit", edit_department_path(department), class: 'btn btn-outline-secondary' %></td>
+              <td><%= link_to "Destroy", department, class: 'btn btn-outline-danger', data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{department.name}?"} %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= link_to "New department", new_department_path, class: 'btn btn-primary' %>
+  </div>
 </div>
-
-<%= link_to "New department", new_department_path %>
