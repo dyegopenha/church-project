@@ -1,0 +1,77 @@
+<div id="<%= dom_id user %>">
+  <p>
+    <strong>Name:</strong>
+    <%= user.name %>
+  </p>
+
+  <p>
+    <strong>Cpf:</strong>
+    <%= user.cpf %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= user.email %>
+  </p>
+
+  <p>
+    <strong>Phone:</strong>
+    <%= user.phone %>
+  </p>
+
+  <p>
+    <strong>Zipcode:</strong>
+    <%= user.zipcode %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= user.address %>
+  </p>
+
+  <p>
+    <strong>Address number:</strong>
+    <%= user.address_number %>
+  </p>
+
+  <p>
+    <strong>Address opt:</strong>
+    <%= user.address_opt %>
+  </p>
+
+  <p>
+    <strong>Birthday:</strong>
+    <%= user.birthday %>
+  </p>
+
+  <p>
+    <strong>Member:</strong>
+    <%= user.member %>
+  </p>
+
+  <p>
+    <strong>Member at:</strong>
+    <%= user.member_at %>
+  </p>
+
+  <p>
+    <strong>Office:</strong>
+    <%= user.office %>
+  </p>
+
+  <p>
+    <strong>Department:</strong>
+    <%= user.department_id %>
+  </p>
+
+  <p>
+    <strong>Avatar:</strong>
+    <%= link_to user.avatar.filename, user.avatar if user.avatar.attached? %>
+  </p>
+
+  <p>
+    <strong>About:</strong>
+    <%= user.about %>
+  </p>
+
+</div>
