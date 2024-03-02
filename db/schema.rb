@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_02_002731) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_02_003204) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,6 +39,64 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_02_002731) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "departments", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.integer "department_id", null: false
+    t.date "when"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_documents_on_department_id"
+  end
+
+  create_table "incomes", force: :cascade do |t|
+    t.decimal "amount"
+    t.string "kind"
+    t.string "origin"
+    t.date "when"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.decimal "amount"
+    t.string "kind"
+    t.string "favored"
+    t.date "when"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "cpf"
+    t.string "email"
+    t.string "phone"
+    t.integer "zipcode"
+    t.string "address"
+    t.string "address_number"
+    t.string "address_opt"
+    t.date "birthday"
+    t.boolean "member"
+    t.date "member_at"
+    t.string "office"
+    t.integer "department_id", null: false
+    t.text "about"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_users_on_department_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "documents", "departments"
+  add_foreign_key "users", "departments"
 end
