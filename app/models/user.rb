@@ -19,4 +19,6 @@ class User < ApplicationRecord
   scope :diacono, -> { where(office: "diacono") }
   scope :nenhum, -> { where(office: "nenhum") }
   scope :birthday_month, -> { where(birthday: Date.today.beginning_of_month..Date.today.end_of_month) }
+  scope :name_contains, ->(param) { where('name ILIKE ?', "%#{param}%") }
+  scope :sorted, -> { order(name: :asc) }
 end

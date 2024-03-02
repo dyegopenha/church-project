@@ -4,4 +4,7 @@ class Department < ApplicationRecord
   has_many :documents
 
   validates :name, presence: true, uniqueness: true
+
+  scope :name_contains, ->(param) { where('name ILIKE ?', "%#{param}%") }
+  scope :sorted, -> { order(name: :asc) }
 end
