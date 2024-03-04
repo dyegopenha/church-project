@@ -21,4 +21,10 @@ class User < ApplicationRecord
   scope :birthday_month, -> { where(birthday: Date.today.beginning_of_month..Date.today.end_of_month) }
   scope :name_contains, ->(param) { where('name LIKE ?', "%#{param}%") }
   scope :sorted, -> { order(name: :asc) }
+
+  def age
+    now = Time.now.utc.to_date
+    now.year - self.birthday.year - ((now.month > self.birthday.month || 
+      (now.month == self.birthday.month && now.day >= self.birthday.day)) ? 0 : 1)
+  end
 end
