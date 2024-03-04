@@ -4,8 +4,7 @@ class DepartmentsController < ApplicationController
   # GET /departments or /departments.json
   def index
     if params[:key].present?
-      key = "%#{params[:key]}%"
-      @departments = Department.name_contains(key)
+      @departments = Department.name_contains(params[:key])
     else
       @departments = Department.all.sorted
     end
