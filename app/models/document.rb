@@ -8,4 +8,5 @@ class Document < ApplicationRecord
 
   scope :from_month, ->(date) { where(when: date.beginning_of_month..date.end_of_month) }
   scope :title_contains, ->(param) { where('title LIKE ?', "%#{param}%") }
+  scope :sorted, -> { order(title: :asc) }
 end

@@ -1,14 +1,41 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Documents</h1>
-
-<div id="documents">
-  <% @documents.each do |document| %>
-    <%= render document %>
-    <p>
-      <%= link_to "Show this document", document %>
-    </p>
-  <% end %>
+<div class="card">
+  <div class="card-header">
+    <h1>Documents</h1>
+  </div>
+  <div class="card-body">
+    <%= form_with url: "", class: 'd-flex', method: :get, data: { turbo_frame: "documents", turbo_action: "advance" } do |form| %>
+      <%= form.search_field :query, class: 'form-control me-2', value: params[:query], oninput: "this.form.requestSubmit()", placeholder: "Search" %>
+      <%= link_to "New", new_document_path, class: 'btn btn-primary' %>
+    <% end %>
+    <%= turbo_frame_tag "documents" do %>
+      <div id="documents">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Department</th>
+              <th>When</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @documents.each do |document| %>
+              <tr>
+                <td><%= document.title %></td>
+                <td><%= document.department.name %></td>
+                <td><%= document.when %></td>
+                <td><%= link_to "Show", document, class: 'btn btn-outline-info', data: { turbo_frame: "_top" } %></td>
+                <td><%= link_to "Edit", edit_document_path(document), class: 'btn btn-outline-warning', data: { turbo_frame: "_top" } %></td>
+                <td><%= link_to "Destroy", document, class: 'btn btn-outline-danger', data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{document.title}?"} %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%== pagy_bootstrap_nav(@pagy) %>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New document", new_document_path %>

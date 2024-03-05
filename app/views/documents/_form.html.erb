@@ -2,7 +2,6 @@
   <% if document.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
-
       <ul>
         <% document.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,33 +9,27 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
+  <div class="form-group">
     <%= form.label :file, style: "display: block" %>
-    <%= form.file_field :file %>
+    <%= form.file_field :file, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :department_id, style: "display: block" %>
-    <%= form.text_field :department_id %>
+    <%= form.select(:department_id, options_for_select(User.options_for_department), {}, class: 'form-select') %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :when, style: "display: block" %>
-    <%= form.date_field :when %>
+    <%= form.date_field :when, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: 'form-control' %>
   </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="form-group mt-3">
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

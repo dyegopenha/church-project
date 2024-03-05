@@ -3,7 +3,12 @@ class DocumentsController < ApplicationController
 
   # GET /documents or /documents.json
   def index
-    @documents = Document.all
+    if params[:query].present?
+      @documents = Document.title_contains(params[:query])
+    else
+      @documents = Document.all.sorted
+    end
+    @pagy, @documents = pagy(@documents.all, items: 25)
   end
 
   # GET /documents/1 or /documents/1.json
