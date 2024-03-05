@@ -3,7 +3,12 @@ class IncomesController < ApplicationController
 
   # GET /incomes or /incomes.json
   def index
-    @incomes = Income.all
+    if params[:query].present?
+      @incomes = Income.origin_contains(params[:query])
+    else
+      @incomes = Income.all
+    end
+    @pagy, @incomes = pagy(@incomes.all, items: 25)
   end
 
   # GET /incomes/1 or /incomes/1.json

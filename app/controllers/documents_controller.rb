@@ -6,7 +6,7 @@ class DocumentsController < ApplicationController
     if params[:query].present?
       @documents = Document.title_contains(params[:query])
     else
-      @documents = Document.all.sorted
+      @documents = Document.all
     end
     @pagy, @documents = pagy(@documents.all, items: 25)
   end

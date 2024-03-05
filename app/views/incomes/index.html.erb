@@ -1,14 +1,43 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Incomes</h1>
-
-<div id="incomes">
-  <% @incomes.each do |income| %>
-    <%= render income %>
-    <p>
-      <%= link_to "Show this income", income %>
-    </p>
-  <% end %>
+<div class="card">
+  <div class="card-header">
+    <h1>Incomes</h1>
+  </div>
+  <div class="card-body">
+    <%= form_with url: "", class: 'd-flex', method: :get, data: { turbo_frame: "incomes", turbo_action: "advance" } do |form| %>
+      <%= form.search_field :query, class: 'form-control me-2', value: params[:query], oninput: "this.form.requestSubmit()", placeholder: "Search" %>
+      <%= link_to "New", new_income_path, class: 'btn btn-primary' %>
+    <% end %>
+    <%= turbo_frame_tag "incomes" do %>
+      <div id="incomes">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Amount</th>
+              <th>Kind</th>
+              <th>When</th>
+              <th>Origin</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @incomes.each do |income| %>
+              <tr>
+                <td><%= income.amount %></td>
+                <td><%= income.kind %></td>
+                <td><%= income.when %></td>
+                <td><%= income.origin %></td>
+                <td><%= link_to "Show", income, class: 'btn btn-outline-info', data: { turbo_frame: "_top" } %></td>
+                <td><%= link_to "Edit", edit_income_path(income), class: 'btn btn-outline-warning', data: { turbo_frame: "_top" } %></td>
+                <td><%= link_to "Destroy", income, class: 'btn btn-outline-danger', data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{income.amount}?"} %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%== pagy_bootstrap_nav(@pagy) %>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New income", new_income_path %>
