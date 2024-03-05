@@ -1,32 +1,26 @@
 <div id="<%= dom_id payment %>">
   <p>
-    <strong>Amount:</strong>
-    <%= payment.amount %>
-  </p>
-
-  <p>
-    <strong>Kind:</strong>
-    <%= payment.kind %>
-  </p>
-
-  <p>
-    <strong>Favored:</strong>
-    <%= payment.favored %>
-  </p>
-
-  <p>
-    <strong>When:</strong>
-    <%= payment.when %>
-  </p>
-
-  <p>
     <strong>File:</strong>
     <%= link_to payment.file.filename, payment.file if payment.file.attached? %>
   </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= payment.description %>
-  </p>
-
+  <div class="form-group mt-3">
+    <label for="amount"><strong>Amount</strong></label>
+    <input class="form-control" type="text" id="amount" value="<%= payment.amount %>" readonly>
+  </div>
+  <div class="form-group mt-3">
+    <label for="kind"><strong>Kind</strong></label>
+    <input class="form-control" type="text" id="kind" value="<%= payment.kind %>" readonly>
+  </div>
+  <div class="form-group mt-3">
+    <label for="origin"><strong>Favored</strong></label>
+    <input class="form-control" type="text" id="origin" value="<%= payment.favored %>" readonly>
+  </div>
+  <div class="form-group mt-3">
+    <label for="when"><strong>When</strong></label>
+    <input class="form-control" type="text" id="when" value="<%= payment.when %>" readonly>
+  </div>
+  <div class="form-group mt-3">
+    <label for="description"><strong>Description</strong></label>
+    <input class="form-control" type="text" id="description" value="<%= payment.description %>" readonly>
+  </div>
 </div>

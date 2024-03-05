@@ -2,7 +2,6 @@
   <% if payment.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
-
       <ul>
         <% payment.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,38 +9,31 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
+  <div class="form-group">
     <%= form.label :amount, style: "display: block" %>
-    <%= form.text_field :amount %>
+    <%= form.text_field :amount, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :kind, style: "display: block" %>
-    <%= form.text_field :kind %>
+    <%= form.select(:kind, options_for_select(Payment.options_for_kind), {}, class: 'form-select') %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :favored, style: "display: block" %>
-    <%= form.text_field :favored %>
+    <%= form.text_field :favored, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :when, style: "display: block" %>
-    <%= form.date_field :when %>
+    <%= form.date_field :when, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :file, style: "display: block" %>
-    <%= form.file_field :file %>
+    <%= form.file_field :file, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: 'form-control' %>
   </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="form-group mt-3">
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

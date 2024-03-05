@@ -31,7 +31,7 @@
                 <td><%= income.origin %></td>
                 <td><%= link_to "Show", income, class: 'btn btn-outline-info', data: { turbo_frame: "_top" } %></td>
                 <td><%= link_to "Edit", edit_income_path(income), class: 'btn btn-outline-warning', data: { turbo_frame: "_top" } %></td>
-                <td><%= link_to "Destroy", income, class: 'btn btn-outline-danger', data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{income.amount}?"} %></td>
+                <td><%= link_to "Destroy", income, class: 'btn btn-outline-danger', data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{income.kind} of #{income.amount} from #{income.origin}?"} %></td>
               </tr>
             <% end %>
           </tbody>

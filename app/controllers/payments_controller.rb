@@ -3,7 +3,12 @@ class PaymentsController < ApplicationController
 
   # GET /payments or /payments.json
   def index
-    @payments = Payment.all
+    if params[:query].present?
+      @payments = Payment.favored_contains(params[:query])
+    else
+      @payments = Payment.all
+    end
+    @pagy, @payments = pagy(@payments.all, items: 25)
   end
 
   # GET /payments/1 or /payments/1.json

@@ -1,14 +1,43 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Payments</h1>
-
-<div id="payments">
-  <% @payments.each do |payment| %>
-    <%= render payment %>
-    <p>
-      <%= link_to "Show this payment", payment %>
-    </p>
-  <% end %>
+<div class="card">
+  <div class="card-header">
+    <h1>Payments</h1>
+  </div>
+  <div class="card-body">
+    <%= form_with url: "", class: 'd-flex', method: :get, data: { turbo_frame: "payments", turbo_action: "advance" } do |form| %>
+      <%= form.search_field :query, class: 'form-control me-2', value: params[:query], oninput: "this.form.requestSubmit()", placeholder: "Search" %>
+      <%= link_to "New", new_payment_path, class: 'btn btn-primary' %>
+    <% end %>
+    <%= turbo_frame_tag "payments" do %>
+      <div id="payments">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Amount</th>
+              <th>Kind</th>
+              <th>When</th>
+              <th>Favored</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @payments.each do |payment| %>
+              <tr>
+                <td><%= payment.amount %></td>
+                <td><%= payment.kind %></td>
+                <td><%= payment.when %></td>
+                <td><%= payment.favored %></td>
+                <td><%= link_to "Show", payment, class: 'btn btn-outline-info', data: { turbo_frame: "_top" } %></td>
+                <td><%= link_to "Edit", edit_payment_path(payment), class: 'btn btn-outline-warning', data: { turbo_frame: "_top" } %></td>
+                <td><%= link_to "Destroy", payment, class: 'btn btn-outline-danger', data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{payment.kind} of #{payment.amount} to #{payment.favored}?"} %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%== pagy_bootstrap_nav(@pagy) %>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New payment", new_payment_path %>
