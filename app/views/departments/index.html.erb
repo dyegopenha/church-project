@@ -4,36 +4,37 @@
     <h1>Departments</h1>
   </div>
   <div class="card-body">
-    <form class="d-flex" action="/department_search">
-      <input class="form-control me-2" name="key" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-dark" type="submit">Search</button>
-    </form>
-    <div id="departments">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @departments.each do |department| %>
+    <%= form_with url: "", class: 'd-flex', method: :get, data: { turbo_frame: "departments", turbo_action: "advance" } do |form| %>
+      <%= form.search_field :query, class: 'form-control me-2', value: params[:query], oninput: "this.form.requestSubmit()", placeholder: "Search" %>
+      <%= link_to "New", new_department_path, class: 'btn btn-primary' %>
+    <% end %>
+    <%= turbo_frame_tag "departments" do %>
+      <div id="departments">
+        <table class="table table-striped">
+          <thead>
             <tr>
-              <td><%= image_tag department.avatar, width: '50' %></td>
-              <td><%= department.name %></td>
-              <td><%= department.description %></td>
-              <td><%= link_to "Show", department, class: 'btn btn-outline-info' %></td>
-              <td><%= link_to "Edit", edit_department_path(department), class: 'btn btn-outline-warning' %></td>
-              <td><%= link_to "Destroy", department, class: 'btn btn-outline-danger', data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{department.name}?"} %></td>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <%= link_to "New department", new_department_path, class: 'btn btn-primary' %>
+          </thead>
+          <tbody>
+            <% @departments.each do |department| %>
+              <tr>
+                <td><%= image_tag department.avatar, width: '50' %></td>
+                <td><%= department.name %></td>
+                <td><%= department.description %></td>
+                <td><%= link_to "Show", department, class: 'btn btn-outline-info', data: { turbo_frame: "_top" } %></td>
+                <td><%= link_to "Edit", edit_department_path(department), class: 'btn btn-outline-warning', data: { turbo_frame: "_top" } %></td>
+                <td><%= link_to "Destroy", department, class: 'btn btn-outline-danger', data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{department.name}?"} %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
   </div>
 </div>
