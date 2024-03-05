@@ -8,6 +8,7 @@ class DepartmentsController < ApplicationController
     else
       @departments = Department.all.sorted
     end
+    @pagy, @departments = pagy(@departments.all, items: 25)
   end
 
   # GET /departments/1 or /departments/1.json

@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     else
       @users = User.all.sorted
     end
+    @pagy, @users = pagy(@users.all, items: 25)
   end
 
   # GET /users/1 or /users/1.json
