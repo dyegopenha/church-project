@@ -1,14 +1,38 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Users</h1>
-
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
+<div class="card">
+  <div class="card-header">
+    <h1>Users</h1>
+  </div>
+  <div class="card-body">
+    <%= form_with url: "", class: 'd-flex', method: :get, data: { turbo_frame: "users", turbo_action: "advance" } do |form| %>
+      <%= form.search_field :query, class: 'form-control me-2', value: params[:query], oninput: "this.form.requestSubmit()", placeholder: "Search" %>
+      <%= link_to "New", new_user_path, class: 'btn btn-primary' %>
+    <% end %>
+    <%= turbo_frame_tag "users" do %>
+      <div id="users">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Phone</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.phone %></td>
+                <td><%= link_to "Show", user, class: 'btn btn-outline-info', data: { turbo_frame: "_top" } %></td>
+                <td><%= link_to "Edit", edit_user_path(user), class: 'btn btn-outline-warning', data: { turbo_frame: "_top" } %></td>
+                <td><%= link_to "Destroy", user, class: 'btn btn-outline-danger', data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete #{user.name}?"} %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New user", new_user_path %>

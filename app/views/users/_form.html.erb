@@ -2,7 +2,6 @@
   <% if user.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
       <ul>
         <% user.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,88 +9,71 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
+  <div class="form-group">
     <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :cpf, style: "display: block" %>
-    <%= form.text_field :cpf %>
+    <%= form.text_field :cpf, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+    <%= form.text_field :email, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :phone, style: "display: block" %>
-    <%= form.text_field :phone %>
+    <%= form.text_field :phone, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :zipcode, style: "display: block" %>
-    <%= form.number_field :zipcode %>
+    <%= form.text_field :zipcode, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :address, style: "display: block" %>
-    <%= form.text_field :address %>
+    <%= form.text_field :address, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :address_number, style: "display: block" %>
-    <%= form.text_field :address_number %>
+    <%= form.text_field :address_number, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :address_opt, style: "display: block" %>
-    <%= form.text_field :address_opt %>
+    <%= form.text_field :address_opt, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :birthday, style: "display: block" %>
-    <%= form.date_field :birthday %>
+    <%= form.date_field :birthday, class: 'form-control' %>
   </div>
-
-  <div>
-    <%= form.label :member, style: "display: block" %>
-    <%= form.check_box :member %>
+  <div class="form-check mt-3">
+    <%= form.label :member, class: 'form-check-label' %>
+    <%= form.check_box :member, class: 'form-check-input' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :member_at, style: "display: block" %>
-    <%= form.date_field :member_at %>
+    <%= form.date_field :member_at, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :office, style: "display: block" %>
-    <%= form.text_field :office %>
+    <%= form.select(:office, options_for_select(User.options_for_office), {}, class: 'form-select') %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :department_id, style: "display: block" %>
-    <%= form.text_field :department_id %>
+    <%= form.select(:department_id, options_for_select(User.options_for_department), {}, class: 'form-select') %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :avatar, style: "display: block" %>
-    <%= form.file_field :avatar %>
+    <%= form.file_field :avatar, class: 'form-control' %>
   </div>
-
-  <div>
+  <div class="form-group mt-3">
     <%= form.label :about, style: "display: block" %>
-    <%= form.text_area :about %>
+    <%= form.text_area :about, class: 'form-control' %>
   </div>
-
-  <div>
-    <%= form.label :active, style: "display: block" %>
-    <%= form.check_box :active %>
+  <div class="form-check mt-3">
+    <%= form.label :active, class: 'form-check-label' %>
+    <%= form.check_box :active, class: 'form-check-input', checked: true %>
   </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="form-group mt-3">
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

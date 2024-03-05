@@ -1,12 +1,12 @@
 <div id="<%= dom_id department %>">
-  <%= image_tag department.avatar, width: '100', style: 'center' if department.avatar.attached? %>
+  <%= image_tag department.avatar, width: '100', class: 'mx-auto d-block' if department.avatar.attached? %>
   <div class="form-group mt-3">
     <label for="name"><strong>Name</strong></label>
     <input class="form-control" type="text" id="name" value="<%= department.name %>" readonly>
   </div>
   <div class="form-group mt-3">
-    <label for="name"><strong>Description</strong></label>
-    <input class="form-control" type="text" id="name" value="<%= department.description %>" readonly>
+    <label for="description"><strong>Description</strong></label>
+    <input class="form-control" type="text" id="description" value="<%= department.description %>" readonly>
   </div>
   <p class="mt-3">
     <strong>Associated users:</strong>
