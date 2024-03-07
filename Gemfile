@@ -70,3 +70,5 @@ group :test do
 end
 
 gem "pagy", "~> 7.0", ">= 7.0.9"
+gem "groupdate"
+gem "chartkick"
