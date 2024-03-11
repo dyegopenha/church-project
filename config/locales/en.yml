@@ -28,6 +28,8 @@
 #       enabled: "ON"
 
 en:
+  application:
+    name: "Church Project"
   header:
     home: "Home"
     departments: "Departments"
@@ -36,3 +38,10 @@ en:
     incomes: "Incomes"
     payments: "Payments"
     sign_out: "Sign Out"
+  home:
+    index:
+      balance: "Balance"
+      incomes: "Incomes"
+      payments: "Payments"
+      amount_by_month: "Amount By Month"
+      amount_by_kind: "Amount By Kind"
