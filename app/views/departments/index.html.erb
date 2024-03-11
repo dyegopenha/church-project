@@ -24,7 +24,7 @@
           <tbody>
             <% @departments.each do |department| %>
               <tr>
-                <td><%= image_tag department.avatar, width: '50' %></td>
+                <td><%= image_tag department.avatar, width: '50' if department.avatar.attached? %></td>
                 <td><%= department.name %></td>
                 <td><%= department.description %></td>
                 <td><%= link_to "Show", department, class: 'btn btn-outline-info', data: { turbo_frame: "_top" } %></td>
