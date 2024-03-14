@@ -72,3 +72,4 @@ end
 gem "pagy", "~> 7.0", ">= 7.0.9"
 gem "groupdate"
 gem "chartkick"
+gem "simple_calendar"
