@@ -1,22 +1,22 @@
 <div id="<%= dom_id event %>">
-  <p>
-    <strong>Title:</strong>
-    <%= event.title %>
-  </p>
-  <p>
-    <strong>Description:</strong>
-    <%= event.description %>
-  </p>
-  <p>
-    <strong>Start date:</strong>
-    <%= event.start_time %>
-  </p>
-  <p>
-    <strong>End date:</strong>
-    <%= event.end_time %>
-  </p>
-  <p>
-    <strong>Department:</strong>
-    <%= event.department_id %>
-  </p>
+  <div class="form-group mt-3">
+    <label for="title"><strong>Title</strong></label>
+    <input class="form-control" type="text" id="title" value="<%= event.title %>" readonly>
+  </div>
+  <div class="form-group mt-3">
+    <label for="description"><strong>Description</strong></label>
+    <input class="form-control" type="text" id="description" value="<%= event.description %>" readonly>
+  </div>
+  <div class="form-group mt-3">
+    <label for="start_time"><strong>Start Time</strong></label>
+    <input class="form-control" type="text" id="start_time" value="<%= event.start_time %>" readonly>
+  </div>
+  <div class="form-group mt-3">
+    <label for="end_time"><strong>End Time</strong></label>
+    <input class="form-control" type="text" id="end_time" value="<%= event.end_time %>" readonly>
+  </div>
+  <div class="form-group mt-3">
+    <label for="department"><strong>Department</strong></label>
+    <input class="form-control" type="text" id="department" value="<%= event.department.name %>" readonly>
+  </div>
 </div>

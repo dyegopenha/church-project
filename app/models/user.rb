@@ -31,12 +31,4 @@ class User < ApplicationRecord
   def self.options_for_office
     ['Nenhum', 'Diacono', 'Presbitero', 'Pastor']
   end
-
-  def self.options_for_department
-    options = []
-    Department.all.each do |department|
-      options << [department.name, department.id]
-    end
-    options
-  end
 end

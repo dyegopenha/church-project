@@ -8,4 +8,12 @@ class Department < ApplicationRecord
 
   scope :name_contains, ->(param) { where('name LIKE ?', "%#{param}%") }
   scope :sorted, -> { order(name: :asc) }
+
+  def self.options_list
+    options = []
+    Department.all.each do |department|
+      options << [department.name, department.id]
+    end
+    options
+  end
 end
