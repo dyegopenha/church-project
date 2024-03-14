@@ -37,6 +37,7 @@ en:
     documents: "Documents"
     incomes: "Incomes"
     payments: "Payments"
+    events: "Events"
     sign_out: "Sign Out"
   home:
     index:
