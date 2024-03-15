@@ -46,3 +46,6 @@ en:
       payments: "Payments"
       amount_by_month: "Amount By Month"
       amount_by_kind: "Amount By Kind"
+  simple_calendar:
+    previous: "<<"
+    next: ">>"
