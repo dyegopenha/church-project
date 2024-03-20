@@ -39,6 +39,7 @@ en:
     payments: "Payments"
     events: "Events"
     sign_out: "Sign Out"
+    sign_in: "Sign In"
   home:
     index:
       balance: "Balance"
